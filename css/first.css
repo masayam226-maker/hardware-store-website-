@@ -1,0 +1,479 @@
+@charset "UTF-8";
+
+html{
+    font-size: 100%
+}
+html {
+    scroll-behavior: smooth;
+}
+body{
+    color: #000000;
+    font-family: sans-serif;
+}
+img{
+    max-width: 100%;
+    vertical-align: bottom;
+}
+li{
+    list-style: none;
+}
+a{
+    color: #000000;
+    text-decoration: none;
+}
+a:hover{
+    opacity: 0.7;
+}
+
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #fff;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  font-size: 20px;
+  background-color: #D9D9D9
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #D9D9D9; /* 好きなグレーに変更可能 */
+}
+
+.hero-content {
+  position: absolute;
+  left: 10%;
+  max-width: 400px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/* Product Image */
+.hero-image {
+  position: absolute;
+  right: 10%;
+}
+
+.hero-image img {
+  width: 380px;
+  height: auto;
+}
+#slideImage {
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+#slideImage.show {
+  opacity: 1;
+}
+
+
+/* Arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 40px;
+  cursor: pointer;
+  color: #333;
+}
+
+.left { left: 20px; }
+.right { right: 20px; }
+
+/* Dots */
+.dots {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: black;
+}
+
+/* --- カテゴリー --- */
+.category-wrapper {
+  padding: 30px 0px;
+  font-weight: bold;
+	position: relative;
+}
+
+.overlay1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 2;
+}
+
+.overlay1.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.category-item {
+ position: relative;
+  gap: 40px;
+  background: none;
+  border: none;
+  padding: 16px 0;
+  font-size: 18px;
+  letter-spacing: .05em;
+  cursor: pointer;
+	z-index: 5;
+}
+
+.category-link{
+	
+}
+
+/* --- スライドダウン --- */
+
+.category-link:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.category-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  width: 100%;
+  height: 1px;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .25s ease;
+}
+
+.category-link:hover::after {
+  transform: scaleX(1);
+}
+
+.dropdown {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(0px);
+  width: 900px; 
+  padding: 40px;
+  background: #fff;
+  border: 1px solid #eee;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, transform .25s ease;
+  z-index: 20;
+}
+
+.dropdown.show {
+  opacity: 1;
+  visibility: visible;
+}
+.category-link:hover .header-area {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(10);
+}
+
+.dropdown-item{
+	position: relative;
+	display: flex;
+	gap: 40px;
+}
+.dropdown-link {
+  position: relative;
+  display: inline-block; /* ← 文字の幅に合わせるために必要 */
+  background: none;
+  border: none;
+  padding: 16px 0;
+  font-size: 16px;
+  font-weight: normal;
+  letter-spacing: .05em;
+  cursor: pointer;
+}
+
+.dropdown-link::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  bottom: 12px;
+  width: 60%;
+  height: 1px;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .25s ease;
+}
+
+.dropdown-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* --- フィルターボタン --- */
+.filter-btn {
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: right;
+  padding: 0px 30px;
+}
+
+/* --- オーバーレイ --- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 10;
+}
+
+/* --- ハンバーガーメニュー --- */
+.hamburger-menu {
+  position: fixed;
+  top: 0;
+  right: -600px;
+  width: 600px;
+  height: 100%;
+  background: white;
+  padding: 20px;
+  transition: 0.3s;
+  overflow-y: auto;
+  z-index: 20;
+}
+
+.hamburger-menu.open {
+  right: 0;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- アコーディオン --- */
+.accordion-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;       /* ← テキストの折り返しを防ぐ */
+  overflow: hidden;          /* ← はみ出し防止（必要に応じて） */
+  text-overflow: ellipsis;
+}
+
+.accordion-content {
+  display: none;
+  padding: 10px 0;
+}
+.accordion-link {
+	font-size: 14px;
+}
+
+.accordion-item.open .accordion-content {
+  display: flex;           /* Flexboxを有効化 */
+  flex-direction: column;  /* 縦方向に並べる */
+  gap: 8px;                 
+  align-items: flex-start; 
+}
+
+.batsu{
+    font-size: 100%;/*ボタンの大きさ*/
+    font-weight: bold;
+    border: 1px solid #999;
+    color: #999;
+    display: flex;
+	margin-left: auto;
+	margin-right: 0;
+    border-radius: 100%;
+    width: 1.3em;
+    line-height: 1.3em;
+	justify-content: center; 
+	align-items: center;
+    cursor: pointer;
+    transition: .2s;
+}
+    
+.batsu:hover{
+    background: #333;
+    border-color: #333;
+    color: #FFF;
+}
+
+.product-grid {
+  display: grid;
+   grid-template-columns: repeat(3, 1fr); /* カード幅に応じて自動配置 */
+  justify-content: center; /* 横3つ */
+  gap: 20px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px; 
+}
+
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 3 / 4;  
+  width: 280px;
+  background: #e0e0e0;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.product-image img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease;
+}
+
+.img-hover {
+  opacity: 0;
+}
+
+.product-card:hover .img-hover {
+  opacity: 1;
+}
+
+.product-card:hover .img-default {
+  opacity: 0;
+}
+
+.product-name {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@media (max-width: 1100px) {
+	
+	
+	.product-grid {
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    padding: 0 40px;  
+}
+	.hamburger-menu {
+  right: -350px;
+  width: 350px;
+}
+}
+
+
+@media (max-width: 768px) {
+	
+	
+.hero {
+  position: relative;
+}
+.hero-content {
+  position: absolute;
+  bottom: 100px;
+}
+ .product-grid {
+  grid-template-columns: auto;
+    justify-content: center;
+    padding: 0 40px;
+  }
+	
+	.product-card {
+  width: 280px;
+  height: 350px;
+		
+ }
+	
+	.hamburger-menu {
+  right: -200px;
+  width: 200px;
+}
+
+	.accordion-item.is-open .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+ }
+}
