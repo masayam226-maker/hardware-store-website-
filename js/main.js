@@ -22,7 +22,21 @@ function changeImage(newSrc) {
     img.classList.add("show");
   }, 100);
 }
+  const ham = document.querySelector(".hamburger");
+  const menu = document.querySelector(".mobile-menu");
+  const closeBtn = document.querySelector(".menu-close");
 
+  ham.addEventListener("click", () => {
+    ham.classList.toggle("active");
+    menu.classList.toggle("open");
+    document.body.style.overflow = "hidden"; // 背景スクロール禁止
+  });
+
+  closeBtn.addEventListener("click", () => {
+    ham.classList.remove("active");
+    menu.classList.remove("open");
+    document.body.style.overflow = ""; // 元に戻す
+  });
 document.getElementById("prevBtn").addEventListener("click", () => {
   const newIndex = (currentIndex - 1 + images.length) % images.length;
   updateSlide(newIndex);
@@ -41,70 +55,21 @@ dots.forEach(dot => {
 
 updateSlide(0);
 
-
-const categoryItems = document.querySelectorAll('.category-link');
-
-categoryItems.forEach(item => {
-  const targetId = item.dataset.menu; // 例: "smartBtn", "pcBtn", "hardBtn"
-  const targetDropdown = document.getElementById(targetId); // 対応する dropdown を取得
-  const overlay1 = document.querySelector('.overlay1');
-   let hoverTimeout;
-
-  // ボタンにマウスが乗ったとき
-  item.addEventListener('mouseenter', () => {
-    clearTimeout(hoverTimeout);
-    targetDropdown.classList.add('show');
-	overlay1.classList.add('show');
-  });
-
-  // ボタンからマウスが離れたとき
-  item.addEventListener('mouseleave', () => {
-    hoverTimeout = setTimeout(() => {
-      targetDropdown.classList.remove('show');
-    }, 300); // 少し遅らせて、dropdownに移動する時間を確保
-	overlay1.classList.remove('show');
-  });
-
-  // マウスが乗ったとき
-  targetDropdown.addEventListener('mouseenter', () => {
-    clearTimeout(hoverTimeout);
-    targetDropdown.classList.add('show');
-	overlay1.classList.add('show');
-  });
-
-  // マウスが離れたとき
-  targetDropdown.addEventListener('mouseleave', () => {
-    targetDropdown.classList.remove('show');
-	overlay1.classList.remove('show');
+document.querySelectorAll(".mobilem-title").forEach(title => {
+  title.addEventListener("click", () => {
+    const item = title.parentElement;
+    item.classList.toggle("open");
   });
 });
 
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-  if (isMobile) {
-    item.addEventListener('click', () => {
-      const isOpen = targetDropdown.classList.contains('show');
-
-      
-   if (isOpen) {
-        targetDropdown.classList.remove('show');
-        overlay1.classList.remove('show');
-   } else {
-        
-        document.querySelectorAll('.dropdown').forEach(drop => drop.classList.remove('show'));
-        targetDropdown.classList.add('show');
-        overlay1.classList.add('show');
-     }
+document.querySelectorAll(".accordion-title").forEach(title => {
+  title.addEventListener("click", () => {
+    const item = title.parentElement;
+    item.classList.toggle("open");
   });
+});
 
-   
-    overlay1.addEventListener('click', () => {
-      targetDropdown.classList.remove('show');
-      overlay1.classList.remove('show');
-    });
-  }
-
-
+document.addEventListener("DOMContentLoaded", () => {
 const filterBtn = document.querySelector('.filter-btn');
 const menu = document.querySelector('.hamburger-menu');
 const overlay = document.querySelector('.overlay');
@@ -125,10 +90,4 @@ closeBtn.addEventListener("click", () => {
   overlay.classList.remove('show');
 });
 
-// --- アコーディオン ---
-document.querySelectorAll('.accordion-title').forEach(title => {
-  title.addEventListener('click', () => {
-    const item = title.parentElement;
-    item.classList.toggle('open');
-  });
 });

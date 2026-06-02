@@ -44,53 +44,93 @@
         </section>
         
     <div class="category-wrapper">
-		<div class="overlay1"></div>
         <div class="header-area">
         <ul class="categories"><!-- liのdata-menuを使用して制御する予定 -->
           <li class="category-item">
 		  <button class="category-link" data-menu="smartBtn">スマートフォン</button>
-			</li>
-		<li class="category-item">
-          <button class="category-link" data-menu="pcBtn">パソコン</button>
-			</li>
-		<li class="category-item">
-          <button class="category-link" data-menu="hardwear">周辺機器</button>
-			</li></ul>
-		  <div class="dropdown" id="smartBtn">
 		  <div class="dropdown-item" id="smart">
 		  <button class="dropdown-link">スマホカテゴリA</button>
           <button class="dropdown-link">スマホカテゴリB</button>
           <button class="dropdown-link">スマホカテゴリC</button>
-		  </div>
-		  </div>
-		   <div class="dropdown" id="pcBtn">
-		  <div class="dropdown-item" id="pc">
+		  </div><div class="overlay1"></div>
+			</li>
+		<li class="category-item">
+          <button class="category-link" data-menu="pcBtn">パソコン</button>
+			<div class="dropdown-item" id="pc">
 		  <button class="dropdown-link">パソコンカテゴリA</button>
           <button class="dropdown-link">パソコンカテゴリB</button>
           <button class="dropdown-link">パソコンカテゴリC</button>
-		 </div>
-		 </div>
-		 <div class="dropdown" id="hardwear">
-		 <div class="dropdown-item" id="hard">
-          <button class="dropdown-link">ガジェットカテゴリA</button>
-          <button class="dropdown-link">ガジェットカテゴリB</button>
-          <button class="dropdown-link">ガジェットカテゴリC</button>
+		 </div><div class="overlay1"></div>
+			</li>
+		<li class="category-item">
+          <button class="category-link" data-menu="hardwear">周辺機器</button>
+				 <div class="dropdown-item" id="hard">
+          <button class="dropdown-link">ガジェットA</button>
+          <button class="dropdown-link">ガジェットB</button>
+          <button class="dropdown-link">ガジェットC</button>
 		</div>
-		</div>
+		<div class="overlay1"></div>
+			</li></ul>
         </div></div>
-<!-- オーバーレイ -->
+		
+    <button class="hamburger" aria-label="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+<!-- スマホメニュー -->
+<nav class="mobile-menu">
+  <button class="menu-close">×</button>
+
+  <div class="mobilem-item">
+      <div class="mobilem-title">
+      <span class="mobilem-sp">スマートフォン</span>
+      <span class="arrow3">‹</span>
+      </div>
+      <div class="mobilem-content">
+        <button class="mobilem-link">スマホカテゴリA</button>
+        <button class="mobilem-link">スマホカテゴリB</button>
+		<button class="mobilem-link">スマホカテゴリC</button>
+      </div>
+    </div>
+    <div class="mobilem-item">
+      <div class="mobilem-title">
+      <span class="mobilem-sp">パソコン</span>
+      <span class="arrow3">‹</span>
+      </div>
+      <div class="mobilem-content">
+        <button class="mobilem-link">パソコンカテゴリA</button>
+        <button class="mobilem-link">パソコンカテゴリB</button>
+		<button class="mobilem-link">パソコンカテゴリC</button>
+      </div>
+    </div>
+    <div class="mobilem-item">
+      <div class="mobilem-title">
+      <span class="mobilem-sp">周辺機器</span>
+      <span class="arrow3">‹</span>
+      </div>
+      <div class="mobilem-content">
+        <button class="mobilem-link">ガジェットA</button>
+        <button class="mobilem-link">ガジェットB</button>
+		<button class="mobilem-link">ガジェットC</button>
+      </div>
+    </div>
+</nav>
+
 <div class="filter-btn">フィルター</div>
 
 <div class="overlay"></div>
 
 <div class="hamburger-menu">
-
-  <div class="accordion">
-
+      <div class="hamburger-header">
+	  <div class="hamburger-parts1">フィルター</div>
+	  <div class="batsu" id="batsu">×</div>
+      </div>
     <div class="accordion-item">
-		<div class="batsu" id="batsu">×</div>
       <div class="accordion-title" id="accordion-title-color">
-	  <span class="color-ac">カラー</span>
+      <span class="color-ac">カラー</span>
+      <span class="arrow2">‹</span>
       </div>
       <div class="accordion-content">
         <button class="accordion-link">ホワイト</button>
@@ -99,8 +139,9 @@
     </div>
 
     <div class="accordion-item">
-      <div class="accordion-title">
-        <span class="color-size">サイズ</span>
+		<div class="accordion-title">
+        <div class="color-size">サイズ</div>
+        <div class="arrow2">‹</div>
       </div>
       <div class="accordion-content">
         <button class="accordion-link">値段が高い順</button>
@@ -108,7 +149,6 @@
       </div>
     </div>
 
-  </div>
 
 </div>
  

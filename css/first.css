@@ -40,7 +40,10 @@ body {
   font-size: 20px;
   background-color: #D9D9D9
 }
-
+.logo {
+	font-weight: bold;
+	font-size: 18pt;
+}
 .nav a {
   margin-left: 20px;
   text-decoration: none;
@@ -50,7 +53,8 @@ body {
 /* Hero Section */
 .hero {
   position: relative;
-  height: 80vh;
+  width: 100%;
+  height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,8 +63,10 @@ body {
 
 .hero-content {
   position: absolute;
-  left: 10%;
+  left: 30%;
+  top: 55%;
   max-width: 400px;
+	z-index: 1;
 }
 
 .hero-content h1 {
@@ -80,17 +86,17 @@ body {
   color: white;
   text-decoration: none;
   border-radius: 4px;
+  z-index: 1;
 }
 
 /* Product Image */
 .hero-image {
   position: absolute;
-  right: 10%;
+  left: 50%;
 }
 
 .hero-image img {
-  width: 380px;
-  height: auto;
+  width: 500px;
 }
 #slideImage {
   opacity: 0;
@@ -150,53 +156,34 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.3);
   opacity: 0;
   pointer-events: none;
   transition: 0.3s;
-  z-index: 2;
+  z-index: 10;
 }
 
-.overlay1.show {
+.category-item:hover .overlay1 {
   opacity: 1;
-  pointer-events: auto;
 }
 
 .categories {
   display: flex;
   justify-content: center;
   gap: 40px;
+  width: 100%;
 }
 
 .category-item {
  position: relative;
-  gap: 40px;
-  background: none;
-  border: none;
-  padding: 16px 0;
-  font-size: 18px;
-  letter-spacing: .05em;
+  padding: 8px 0;
   cursor: pointer;
-	z-index: 5;
 }
-
-.category-link{
-	
-}
-
-/* --- スライドダウン --- */
-
-.category-link:hover .dropdown {
-  opacity: 1;
-  visibility: visible;
-}
-
-
-.category-link::after {
+.category-item::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 8px;
+  bottom: 0;
   width: 100%;
   height: 1px;
   background: #000;
@@ -205,38 +192,41 @@ body {
   transition: transform .25s ease;
 }
 
-.category-link:hover::after {
+.category-item:hover::after {
   transform: scaleX(1);
 }
 
-.dropdown {
+/* --- スライドダウン --- */
+
+.dropdown-item{
   position: absolute;
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(0px);
-  width: 900px; 
-  padding: 40px;
+  width: 2900px;
+  height: 150px;
+	gap: 20px;
+  display: flex;
+  justify-content: center;
+  transform: translateX(-50%) translateY(10px);
   background: #fff;
+  padding: 20px 30px;
   border: 1px solid #eee;
   opacity: 0;
   visibility: hidden;
-  transition: opacity .25s ease, transform .25s ease;
+  transition: opacity .3s ease, transform .3s ease;
+  white-space: nowrap;
+}
+#smart {
+	transform: translateX(-45.5%) translateY(0);
+}
+#hard {
+	transform: translateX(-53.5%) translateY(0);
+}
+.category-item:hover .dropdown-item {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
   z-index: 20;
-}
-
-.dropdown.show {
-  opacity: 1;
-  visibility: visible;
-}
-.category-link:hover .header-area {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(10);
-}
-
-.dropdown-item{
-	position: relative;
-	display: flex;
-	gap: 40px;
 }
 .dropdown-link {
   position: relative;
@@ -249,31 +239,118 @@ body {
   letter-spacing: .05em;
   cursor: pointer;
 }
+.dropdown-link:hover {
+  color: #555555
+}
 
-.dropdown-link::after {
-  content: "";
+
+:root {
+  --text: #111;
+  --border: #e5e5e5;
+}
+
+
+/* ハンバーガー */
+.hamburger {
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 26px;
+  height: 20px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 2px;
+  width: 100%;
+  background: var(--text);
+  border-radius: 999px;
+  transition: 0.3s ease;
+}
+
+/* 開いたとき */
+
+
+/* ===== スマホメニュー ===== */
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+  padding: 70px 24px 24px;
+  z-index: 200;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+.mobilem-title {
+	  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 0;
+  width: 100%;
+  height: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+	justify-content: space-between; 
+}
+
+.menu-close {
   position: absolute;
-  left: 15px;
-  bottom: 12px;
-  width: 60%;
-  height: 1px;
-  background: #000;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform .25s ease;
+  top: 18px;
+  right: 20px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.arrow3 {
+	position: absolute;
+  transition: transform 0.3s ease;
+  font-size: 35px;
+  top: 1px;
+  left:91%;
+  transform: rotate(-90deg);
+  font-weight: 100;
+}
+.mobilem-item.open .arrow3 {
+  transform: rotate(90deg) translateY(-20px)translateY(8px);
+}
+.mobilem-sp {
+	margin-top: 25px;
+}
+.mobilem-content {
+  display: none;
+  padding: 10px 0;
+}
+.mobilem-item.open .mobilem-content {
+  display: flex;           /* Flexboxを有効化 */
+  flex-direction: column;  /* 縦方向に並べる */
+  gap: 13px;                 
+  align-items: flex-start; 
+}
+.mobilem-link:hover {
+	color: #555555
 }
 
-.dropdown-link:hover::after {
-  transform: scaleX(1);
-}
-
-/* --- フィルターボタン --- */
 .filter-btn {
   margin-top: 20px;
+  margin-right: 20%;
   cursor: pointer;
   font-weight: bold;
   text-align: right;
   padding: 0px 30px;
+	z-index: 20;
 }
 
 /* --- オーバーレイ --- */
@@ -287,7 +364,7 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: 0.3s;
-  z-index: 10;
+  z-index: 40;
 }
 
 /* --- ハンバーガーメニュー --- */
@@ -298,12 +375,17 @@ body {
   width: 600px;
   height: 100%;
   background: white;
-  padding: 20px;
+  padding-left: 30px;
   transition: 0.3s;
   overflow-y: auto;
-  z-index: 20;
+  z-index: 50;
 }
-
+.hamburger-header {
+	display: flex;
+	width: 100%;
+	margin-bottom: 20px;
+	margin-top: 15px;
+}
 .hamburger-menu.open {
   right: 0;
 }
@@ -315,17 +397,26 @@ body {
 
 /* --- アコーディオン --- */
 .accordion-title {
+  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   cursor: pointer;
   padding: 10px 0;
+  width: 100%;
+  height: 30px;
+  padding-bottom: 15px;
   border-bottom: 1px solid #ddd;
-  white-space: nowrap;       /* ← テキストの折り返しを防ぐ */
-  overflow: hidden;          /* ← はみ出し防止（必要に応じて） */
-  text-overflow: ellipsis;
+	justify-content: space-between; 
 }
-
+.arrow2 {
+   position: absolute;
+  transition: transform 0.3s ease;
+  font-size: 35px;
+  top: -13px;
+  left:91%;
+  transform: rotate(-90deg);
+  font-weight: 100;
+}
 .accordion-content {
   display: none;
   padding: 10px 0;
@@ -333,45 +424,52 @@ body {
 .accordion-link {
 	font-size: 14px;
 }
+.accordion-link:hover {
+	color: #555555
+}
 
 .accordion-item.open .accordion-content {
   display: flex;           /* Flexboxを有効化 */
   flex-direction: column;  /* 縦方向に並べる */
-  gap: 8px;                 
+  gap: 13px;                 
   align-items: flex-start; 
+}
+.accordion-item.open .arrow2 {
+  transform: rotate(90deg) translateY(-20px)translateY(8px);
+}
+.accordion-item {
+	padding-top: 10px;
+}
+.hamburger-parts1 {
+	margin-top: 5px;
+	font-weight: 500;
+	left: 0;
+	font-size: 18px
 }
 
 .batsu{
-    font-size: 100%;/*ボタンの大きさ*/
-    font-weight: bold;
-    border: 1px solid #999;
-    color: #999;
-    display: flex;
-	margin-left: auto;
-	margin-right: 0;
-    border-radius: 100%;
-    width: 1.3em;
-    line-height: 1.3em;
-	justify-content: center; 
-	align-items: center;
-    cursor: pointer;
-    transition: .2s;
+  margin-right: 20px;
+  margin-left: auto;
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  line-height: 1;
 }
     
 .batsu:hover{
-    background: #333;
-    border-color: #333;
-    color: #FFF;
+    color: #949494;
 }
 
 .product-grid {
   display: grid;
-   grid-template-columns: repeat(3, 1fr); /* カード幅に応じて自動配置 */
-  justify-content: center; /* 横3つ */
-  gap: 20px;
+  grid-template-columns: repeat(3, auto); /* カード幅に応じて自動配置 */
+  justify-content: center;
+  gap: 40px 10px;
   max-width: 1000px;
   margin: 40px auto;
-  padding: 0 20px; 
+  padding: 0 0px; 
 }
 
 
@@ -383,8 +481,7 @@ body {
   aspect-ratio: 3 / 4;  
   width: 280px;
   background: #e0e0e0;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 0px;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
@@ -392,7 +489,6 @@ body {
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
 }
 
 .product-image {
@@ -426,12 +522,64 @@ body {
 .product-name {
   margin-top: 15px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
+ transform: translateX(0%) translateY(20%);
 }
+
+@media (max-width: 1400px) {
+.filter-btn {
+  margin-top: 20px;
+  margin-right: 0%;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: right;
+  padding: 0px 30px;
+}
+	
+
+.hero-content {
+  position: absolute;
+  left: 20%;
+  top: 55%;
+  max-width: 400px;
+	z-index: 5;
+}
+
+
+}
+
 
 @media (max-width: 1100px) {
 	
-	
+
+.hero-content {
+  position: absolute;
+  left: 20%;
+  top: 55%;
+  max-width: 400px;
+	z-index: 1;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Product Image */
+.hero-image {
+  position: absolute;
+  left: 40%;
+  top: 5%;
+}
+
+.slideImage {
+  width: 250px;
+}
 	.product-grid {
     grid-template-columns: repeat(2, auto);
     justify-content: center;
@@ -445,32 +593,77 @@ body {
 
 
 @media (max-width: 768px) {
-	
-	
+.category-wrapper {
+	display: none;
+	}
+.logo {
+	margin-top: -5px;
+	font-weight: bold;
+	font-size: 16pt;
+}
+.nav {
+		font-size: 16px;
+}
 .hero {
   position: relative;
+  height: 60vh;
 }
 .hero-content {
   position: absolute;
-  bottom: 100px;
+  bottom: 60px;
+	z-index: 10;
 }
- .product-grid {
-  grid-template-columns: auto;
-    justify-content: center;
-    padding: 0 40px;
-  }
-	
-	.product-card {
-  width: 280px;
-  height: 350px;
-		
+	.hero-image {
+  position: relative;
+  width: 400px;
+  left: 1%;
+  top: -17%;
+}
+.hamburger {
+  display: flex;
+}
+#slideImage {
+  width: 400px;
+}
+.product-grid {
+  width: 100%;
+  height: auto;
+  gap: 30px 45px;
+  padding:30px 0px;
+  padding: 0 0px; 
+  transform: translateX(-2%) translateY(-20px);
+}
+
+.filter-btn {
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: right;
+  padding: 0px 10px;
+  z-index: 20;
+}
+
+.product-card {
+  width: 120%;
+  height: auto;
+  background: #e0e0e0;
  }
 	
 	.hamburger-menu {
-  right: -200px;
-  width: 200px;
+  right: -100%;
+  width: 100%;
+  z-index: 100;
 }
-
+.product-image {
+  position: relative;
+  width: 100%;
+  height: 220px;
+}
+	.product-image img {
+  width: 75%;
+  height: auto;
+  transform: translateX(16%) translateY(19%);
+}
 	.accordion-item.is-open .mega-menu {
   opacity: 1;
   visibility: visible;
